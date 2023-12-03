@@ -1,2 +1,2 @@
 # foodie-delights
-Food Receipies for Foodies like me
+Food Recipies for Foodies like me
