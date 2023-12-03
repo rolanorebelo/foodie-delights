@@ -12,25 +12,93 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 5s ease infinite;
             color: #fff;
+            background-color: black;
         }
 
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
+/* Add different gradients for each section */
+#home {
+    background: linear-gradient(45deg, rgb(67, 2, 64), #6c062d, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientHome 5s ease infinite;
+}
 
-            50% {
-                background-position: 100% 50%;
-            }
+#gallery {
+    background: linear-gradient(45deg, #370101, #e8b10c, #180345, #180345);
+    background-size: 400% 400%;
+    animation: gradientGallery 5s ease infinite;
+}
 
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+#recipes {
+    background: linear-gradient(45deg, #590004, #8c0024, #a61a38, #cc223e);
+    background-size: 400% 400%;
+    animation: gradientRecipes 5s ease infinite;
+}
+
+#contact {
+    background: linear-gradient(45deg, #001f3f, #003366, #004080, #00509e);
+    background-size: 400% 400%;
+    animation: gradientContact 5s ease infinite;
+}
+
+@keyframes gradientHome {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes gradientGallery {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes gradientRecipes {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes gradientContact {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ... rest of your styles ... */
+
 
         header {
             background: linear-gradient(45deg, #121212, #000033, #000044, #000055, #000066);
@@ -65,7 +133,21 @@
         }
 
         h2 {
-            color: #333;
+            color: #ffffff;
+        }
+
+        #featuredRecipe{
+            border: 1px solid #ddd;
+            padding: 28px 0 20px 0;
+            margin: 20px auto; /* Updated margin to 'auto' for centering horizontally */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #051e25;
+            width: 22rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
         }
 
         .recipe {
@@ -77,18 +159,12 @@
             background: #051e25;
         }
 
+
         .video-container {
             overflow: hidden;
             white-space: nowrap;
-            width: 100%;
-            margin: auto;
         }
 
-        .video-container .videoSlides {
-            display: inline-block;
-            white-space: nowrap;
-            transition: transform 1s ease-in-out;
-        }
         .video-container iframe {
             width: 300px; /* Adjust as needed */
             height: 169px; /* Adjust as needed */
@@ -193,8 +269,8 @@
             <h3>Popular Recipe Slideshow</h3>
             <div class="video-container" id="videoSlideshow">
                 <!-- Add video thumbnails as slides -->
-                <div class="videoSlides" id="video1"></div>
-                <div class="videoSlides" id="video2"></div>
+                <div class="videoSlide" id="video1"></div>
+                <div class="videoSlide" id="video2"></div>
                 <!-- Add more divs as needed -->
             </div>
             <p>Indulge in the rich flavors of these popular recipes.</p>
@@ -250,30 +326,18 @@
             setTimeout(showSlides, 3000); // Change slide every 3 seconds
         }
 
+      
+
         function showFeaturedRecipe() {
-            document.getElementById("featuredRecipe").style.display = "block";
-        }
+    var featuredRecipe = document.getElementById("featuredRecipe");
+    featuredRecipe.style.display = "block";
 
-       // Video slideshow script
-       var videoSlideIndex = 0;
-        showVideoSlides();
+    // Add the YouTube short embedded code
+    featuredRecipe.innerHTML = '<iframe width="300" height="169" src="https://www.youtube.com/embed/aj5tCjyqQwk" frameborder="0" allowfullscreen></iframe>';
+}
 
-        function showVideoSlides() {
-            var i;
-            var videoSlides = document.getElementsByClassName("videoSlides");
-            for (i = 0; i < videoSlides.length; i++) {
-                videoSlides[i].style.display = "none";
-            }
-            videoSlideIndex++;
-            if (videoSlideIndex > videoSlides.length) {
-                videoSlideIndex = 1;
-            }
 
-            var container = document.getElementById("videoSlideshow");
-            container.style.transform = "translateX(" + -(videoSlideIndex - 1) * 100 + "%)";
-
-            setTimeout(showVideoSlides, 3000); // Change video slide every 3 seconds
-        }
+    
         function loadYouTubeAPI() {
             var tag = document.createElement('script');
             tag.src = 'https://www.youtube.com/iframe_api';
